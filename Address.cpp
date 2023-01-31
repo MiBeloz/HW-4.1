@@ -1,7 +1,7 @@
-#include "Address.h"
+п»ї#include "Address.h"
 
 
-Address::Address() : city{ "Неизвестный город" }, street{ "Неизвестная улица" }, houseNumber{}, apartmentNumber{} {}
+Address::Address() : city{ "РќРµРёР·РІРµСЃС‚РЅС‹Р№ РіРѕСЂРѕРґ" }, street{ "РќРµРёР·РІРµСЃС‚РЅР°СЏ СѓР»РёС†Р°" }, houseNumber{}, apartmentNumber{} {}
 
 void Address::setCity(const std::string _city) { city = _city; }
 

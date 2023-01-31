@@ -1,4 +1,4 @@
-#include "Address.h"
+п»ї#include "Address.h"
 
 #include <iostream>
 #include <fstream>
@@ -21,44 +21,55 @@ int main() {
 	Address* address = nullptr;
 	int size{};
 
-	std::cout << "Чтение адресов из файла '" << fileIn << "' и запись в другом формате в обратном порядке в файл '" << fileOut << "'.\n\n";
-	std::cout << "Нажмите любую клавишу, чтобы считать данные из файла...\n\n";
+	std::cout << "Р§С‚РµРЅРёРµ Р°РґСЂРµСЃРѕРІ РёР· С„Р°Р№Р»Р° '" << fileIn << "' Рё Р·Р°РїРёСЃСЊ РІ РґСЂСѓРіРѕРј С„РѕСЂРјР°С‚Рµ РІ РѕР±СЂР°С‚РЅРѕРј РїРѕСЂСЏРґРєРµ РІ С„Р°Р№Р» '" << fileOut << "'.\n\n";
+	std::cout << "РќР°Р¶РјРёС‚Рµ Р»СЋР±СѓСЋ РєР»Р°РІРёС€Сѓ, С‡С‚РѕР±С‹ СЃС‡РёС‚Р°С‚СЊ РґР°РЅРЅС‹Рµ РёР· С„Р°Р№Р»Р°...\n\n";
 	system("pause > nul");
 	
-	// Считать количество адресов
+	// РЎС‡РёС‚Р°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°РґСЂРµСЃРѕРІ
 	size = readNumAddress(fileIn);
 	if (size > 0) {
 		address = new Address[size];
 	}
 	else if (size == -1) {
-		std::cout << "Ошибка открытия файла '" << fileIn << "'!" << std::endl;
+		std::cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° '" << fileIn << "'!" << std::endl;
 		system("pause > nul");
 		return 0;
 	}
 	else {
-		std::cout << "В файле '" << fileIn << "' нет адресов!\n";
+		std::cout << "Р’ С„Р°Р№Р»Рµ '" << fileIn << "' РЅРµС‚ Р°РґСЂРµСЃРѕРІ!\n";
 		system("pause > nul");
 		return 0;
 	}
 
-	// Считать все адреса
+	// РЎС‡РёС‚Р°С‚СЊ РІСЃРµ Р°РґСЂРµСЃР°
 	if (!readAddress(address, size, fileIn)) {
-		std::cout << "Ошибка открытия файла '" << fileIn << "'!" << std::endl;
+		std::cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° '" << fileIn << "'!" << std::endl;
+
+		delete[] address;
+		address = nullptr;
+
 		system("pause > nul");
 		return 0;
 	}
 	
-	std::cout << "Данные считаны в формате:" << std::endl;
+	std::cout << "Р”Р°РЅРЅС‹Рµ СЃС‡РёС‚Р°РЅС‹ РІ С„РѕСЂРјР°С‚Рµ:" << std::endl;
 	printAddressFromIn(address, size);
 	std::cout << std::endl;
 
-	// Запись всех адресов
-	std::cout << "Данные записаны в формате:" << std::endl;
+	// Р—Р°РїРёСЃСЊ РІСЃРµС… Р°РґСЂРµСЃРѕРІ
+	std::cout << "Р”Р°РЅРЅС‹Рµ Р·Р°РїРёСЃР°РЅС‹ РІ С„РѕСЂРјР°С‚Рµ:" << std::endl;
 	if (!writeAddress(address, size, fileOut)) {
-		std::cout << "Ошибка открытия файла '" << fileOut << "'!" << std::endl;
+		std::cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° '" << fileOut << "'!" << std::endl;
+
+		delete[] address;
+		address = nullptr;
+
 		system("pause > nul");
 		return 0;
 	}
+
+	delete[] address;
+	address = nullptr;
 
 	system("pause > nul");
 	return 0;
